@@ -62,7 +62,10 @@ class App extends Component {
   }
 
   search(searchquery) {
-    fetch(`${this.state.gpodurl}search.json?q=${searchquery}`)
+    fetch(
+      `${this.state.gpodurl}search.json?q=${searchquery}&scale_logo=${this.state
+        .logo_scale}`
+    )
       .then(res => res.json())
       .then(
         res => this.setState({ podcasts: res }),
@@ -90,12 +93,7 @@ class App extends Component {
           <Body>
             <Grid>
               {podcasts.map((podcast, i) =>
-                <Card
-                  podcast={podcast}
-                  alt="../resources/Image_not_available.png"
-                  scale={logo_scale}
-                  key={i}
-                />
+                <Card podcast={podcast} scale={logo_scale} key={i} />
               )}
             </Grid>
           </Body>

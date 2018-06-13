@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import notFound from '../resources/Image_not_available.png'
 
 const CardDiv = styled.div`
   width: fit-content;
@@ -24,6 +25,11 @@ const Img = styled.img`
   width: auto;
   height: auto;
 `
+
+const ImgWrap = styled.div`
+  width: ${props => props.scale}px;
+  height: ${props => props.scale}px;
+`
 const Popup = styled.div`
   position: relative;
   display: inline-block;
@@ -39,7 +45,7 @@ const PopupText = styled.div`
   font-size: 13px;
   background-color: #424242;
   color: #fff;
-  text-align: justify;
+  text-align: justify-left;
   padding: 10px
   position: absolute;
   z-index: 1;
@@ -83,7 +89,7 @@ class Card extends Component {
   }
 
   render() {
-    const { podcast, alt, scale } = this.props
+    const { podcast, scale } = this.props
     return (
       <Wrapper scale={scale}>
         <Popup>
@@ -100,7 +106,13 @@ class Card extends Component {
           onMouseOver={e => this.openPopup(e)}
           onMouseOut={e => this.closePopup(e)}
         >
-          <Img alt={alt} src={podcast.scaled_logo_url} scale={scale} />
+          <ImgWrap scale={scale}>
+            <Img
+              alt="Image not available"
+              src={podcast.scaled_logo_url ? podcast.scaled_logo_url : notFound}
+              scale={scale}
+            />
+          </ImgWrap>
           <h3>
             {podcast.title}
           </h3>
