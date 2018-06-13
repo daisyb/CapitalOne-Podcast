@@ -10,6 +10,8 @@ const Container = styled.div`
   background: #0099ff;
   color: white;
   border-bottom: 2px solid #dadcdc;
+  margin: 0;
+  width: 100%;
 `
 
 const Left = styled.div`

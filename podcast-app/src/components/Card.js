@@ -1,21 +1,20 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import notFound from '../resources/Image_not_available.png'
-
-const CardDiv = styled.div`
-  width: fit-content;
-  height: fit-content;
-`
+import defaultImg from '../resources/default.png'
 
 const Wrapper = styled.div`
   width: ${props => props.scale}px;
-  height: ${props => props.scale + 100}px;
+  height: ${props => props.scale + 110}px;
   background: white;
   padding: 0px 10px 0px 10px;
   margin: 10px;
   -webkit-box-shadow: 5px 9px 38px -6px rgba(168, 168, 168, 1);
   -moz-box-shadow: 5px 9px 38px -6px rgba(168, 168, 168, 1);
   box-shadow: 5px 9px 38px -6px rgba(168, 168, 168, 1);
+`
+const CardDiv = styled.div`
+  width: fit-content;
+  height: fit-content;
 `
 
 const Img = styled.img`
@@ -29,6 +28,11 @@ const Img = styled.img`
 const ImgWrap = styled.div`
   width: ${props => props.scale}px;
   height: ${props => props.scale}px;
+`
+
+const Title = styled.h3`
+  padding: 0;
+  margin: 0;
 `
 const Popup = styled.div`
   position: relative;
@@ -49,7 +53,7 @@ const PopupText = styled.div`
   padding: 10px
   position: absolute;
   z-index: 1;
-  margin-left: 165px;
+  margin-left: ${props => props.scale + 15}px;
   &:after,
   &before {
     right: 100%;
@@ -88,15 +92,23 @@ class Card extends Component {
     this.setState({ popup: false })
   }
 
+  loadDefaultImg(e) {
+    e.target.src = defaultImg
+  }
+
   render() {
     const { podcast, scale } = this.props
     return (
       <Wrapper scale={scale}>
         <Popup>
-          <PopupText {...this.state}>
-            <h3>
+          <PopupText popup={this.state.popup} scale={scale}>
+            <Title>
               {podcast.title}
-            </h3>
+            </Title>
+            <span>
+              {podcast.subscribers} subscribers<br />
+            </span>
+            <br />
             <span />
             {podcast.description}
           </PopupText>
@@ -109,8 +121,11 @@ class Card extends Component {
           <ImgWrap scale={scale}>
             <Img
               alt="Image not available"
-              src={podcast.scaled_logo_url ? podcast.scaled_logo_url : notFound}
+              src={
+                podcast.scaled_logo_url ? podcast.scaled_logo_url : defaultImg
+              }
               scale={scale}
+              onError={e => this.loadDefaultImg(e)}
             />
           </ImgWrap>
           <h3>

@@ -28,6 +28,13 @@ class SearchBar extends Component {
     this.searchtext.value = null
   }
 
+  checkEnter(e) {
+    let code = e.keyCode ? e.keyCode : e.which
+    if (code === 13) {
+      this.executeSearch(null)
+    }
+  }
+
   render() {
     return (
       <Container>
@@ -35,6 +42,7 @@ class SearchBar extends Component {
           type="text"
           placeholder="Search"
           innerRef={comp => (this.searchtext = comp)}
+          onKeyPress={e => this.checkEnter(e)}
         />
         <SearchButton type="submit" onClick={e => this.executeSearch(e)}>
           <span role="img" aria-label="search">
