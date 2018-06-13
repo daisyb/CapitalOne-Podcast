@@ -13,8 +13,9 @@ const Wrapper = styled.div`
   box-shadow: 5px 9px 38px -6px rgba(168, 168, 168, 1);
 `
 const CardDiv = styled.div`
-  width: fit-content;
-  height: fit-content;
+  width: ${props => props.scale}px;
+  height: ${props => props.scale + 90}px;
+  overflow: hidden;
 `
 
 const Img = styled.img`
@@ -57,7 +58,7 @@ const PopupText = styled.div`
   &:after,
   &before {
     right: 100%;
-    top: 50%;
+    top: 25%;
     border: solid transparent;
     content: " ";
     height: 0;
@@ -117,6 +118,7 @@ class Card extends Component {
         <CardDiv
           onMouseOver={e => this.openPopup(e)}
           onMouseOut={e => this.closePopup(e)}
+          scale={scale}
         >
           <ImgWrap scale={scale}>
             <Img
