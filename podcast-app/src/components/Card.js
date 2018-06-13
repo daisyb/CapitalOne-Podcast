@@ -10,7 +10,7 @@ const Wrapper = styled.div`
   width: ${props => props.scale}px;
   height: ${props => props.scale + 100}px;
   background: white;
-  padding: 0px 8px 0px 8px;
+  padding: 0px 10px 0px 10px;
   margin: 10px;
   -webkit-box-shadow: 5px 9px 38px -6px rgba(168, 168, 168, 1);
   -moz-box-shadow: 5px 9px 38px -6px rgba(168, 168, 168, 1);
@@ -35,17 +35,15 @@ const Popup = styled.div`
 `
 const PopupText = styled.div`
   visibility: ${props => (props.popup ? 'visible' : 'hidden')};
-  width: 300px;
-  background-color: #555;
+  width: 200px;
+  font-size: 13px;
+  background-color: #424242;
   color: #fff;
   text-align: justify;
-  border-radius: 6px;
   padding: 10px
   position: absolute;
   z-index: 1;
-
-  margin-left: 250px;
-  margin-top: 50px;
+  margin-left: 165px;
   &:after,
   &before {
     right: 100%;
