@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import SearchBar from './SearchBar'
 import Login from './Login'
+import NavMenu from './NavMenu'
 
 const Container = styled.div`
-  padding: 2%;
+  padding: 20px 10px 0px 10px;
   display: flex;
-  justify-content: space-between;
-  background: #0099ff;
-  color: white;
+  flex-direction: column;
+  // background: #0099ff;
+  background: #cedbff;
   border-bottom: 2px solid #dadcdc;
   margin: 0;
   width: 100%;
+`
+const TopContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
 `
 
 const Left = styled.div`
@@ -24,26 +29,40 @@ const Right = styled.div`
   justify-content: flext-end;
 `
 const Logo = styled.div`
-  font-size: 30px;
+  font-size: 25px;
   width: 200px;
 `
 
-const Header = props => {
-  return (
-    <Container>
-      <Left>
-        <Logo>Clever Name</Logo>
-        <SearchBar search={props.search} />
-      </Left>
-      <Right>
-        <Login
-          gpodurl={props.gpodurl}
-          username={props.username}
-          setUsername={props.setUsername}
+class Header extends Component {
+  render() {
+    const active = 'popular'
+    const { gpodurl, username, setUsername, location } = this.props
+    return (
+      <Container>
+        <TopContainer>
+          <Left>
+            <Logo>Clever Name</Logo>
+            <SearchBar />
+          </Left>
+          <Right>
+            <Login
+              gpodurl={gpodurl}
+              username={username}
+              setUsername={setUsername}
+            />
+          </Right>
+        </TopContainer>
+        <NavMenu
+          location={location}
+          tabs={{
+            POPULAR: '/',
+            SUBSCRIPTIONS: '/Subscriptions',
+            GENRES: '/Genres'
+          }}
         />
-      </Right>
-    </Container>
-  )
+      </Container>
+    )
+  }
 }
 
 export default Header
