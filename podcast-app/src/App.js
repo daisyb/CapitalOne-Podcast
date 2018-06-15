@@ -4,6 +4,8 @@ import Header from './components/Header'
 import Error from './views/Error'
 import Popular from './views/Popular'
 import Search from './views/Search'
+import Genres from './views/Genres'
+import Genre from './views/Genres/Genre'
 
 class App extends Component {
   constructor() {
@@ -47,6 +49,19 @@ class App extends Component {
                 location={props.location}
               />}
           />
+          <Route
+            exact
+            path="/Genres"
+            component={props =>
+              <Genres gpodurl={gpodurl} logo_scale={logo_scale} />}
+          />
+          <Route
+            exact
+            path="/Genres:genre"
+            component={props =>
+              <Genre gpodurl={gpodurl} logo_scale={logo_scale} />}
+          />
+
           <Route component={Error} />
         </Switch>
       </div>

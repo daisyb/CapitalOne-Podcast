@@ -98,22 +98,24 @@ class Card extends Component {
   }
 
   render() {
-    const { podcast, scale } = this.props
+    const { resource, scale, popup } = this.props
     return (
       <Wrapper scale={scale}>
-        <Popup>
-          <PopupText popup={this.state.popup} scale={scale}>
-            <Title>
-              {podcast.title}
-            </Title>
-            <span>
-              {podcast.subscribers} subscribers<br />
-            </span>
-            <br />
-            <span />
-            {podcast.description}
-          </PopupText>
-        </Popup>
+        {popup
+          ? <Popup>
+              <PopupText popup={this.state.popup} scale={scale}>
+                <Title>
+                  {resource.title}
+                </Title>
+                <span>
+                  {resource.subscribers} subscribers<br />
+                </span>
+                <br />
+                <span />
+                {resource.description}
+              </PopupText>
+            </Popup>
+          : ''}
 
         <CardDiv
           onMouseOver={e => this.openPopup(e)}
@@ -124,14 +126,14 @@ class Card extends Component {
             <Img
               alt="Image not available"
               src={
-                podcast.scaled_logo_url ? podcast.scaled_logo_url : defaultImg
+                resource.scaled_logo_url ? resource.scaled_logo_url : defaultImg
               }
               scale={scale}
               onError={e => this.loadDefaultImg(e)}
             />
           </ImgWrap>
           <h3>
-            {podcast.title}
+            {resource.title}
           </h3>
         </CardDiv>
       </Wrapper>
