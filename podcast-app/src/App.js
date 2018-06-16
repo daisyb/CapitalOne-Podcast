@@ -6,6 +6,7 @@ import Popular from './views/Popular'
 import Search from './views/Search'
 import Genres from './views/Genres'
 import Genre from './views/Genres/Genre'
+import Subscriptions from './views/Subscriptions'
 
 class App extends Component {
   constructor() {
@@ -69,7 +70,16 @@ class App extends Component {
                 match={props.match}
               />}
           />
-
+          <Route
+            exact
+            path="/Subscriptions"
+            component={props =>
+              <Subscriptions
+                gpodurl={gpodurl}
+                username={username}
+                logo_scale={logo_scale}
+              />}
+          />
           <Route component={Error} />
         </Switch>
       </div>
