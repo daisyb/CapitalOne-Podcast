@@ -56,3 +56,9 @@ export function scaleLogo(url, scale) {
   scaled_url = scaled_url.join('/')
   return scaled_url
 }
+
+export function getColorCode() {
+  const colorcodes = ['#ff70a6', '#ff9770', '#ffd670', '#e9ff70', '#70d6ff']
+  const index = Math.floor(Math.random() * colorcodes.length)
+  return colorcodes[index]
+}

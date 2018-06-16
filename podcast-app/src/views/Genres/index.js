@@ -11,7 +11,7 @@ class Genres extends Component {
   }
 
   componentDidMount() {
-    /* fetch Top Podcasts */
+    /* fetch Genres */
     const fetchGenres = async () => {
       const tags = await fetch(`${this.props.gpodurl}api/2/tags/100.json`)
         .then(res => {

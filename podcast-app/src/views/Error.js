@@ -2,7 +2,7 @@ import React from 'react'
 import Body from '../components/Body'
 
 const Error = props => {
-  console.log('Error')
+  console.log(props.error)
   return (
     <Body>
       podcasts={[]}
