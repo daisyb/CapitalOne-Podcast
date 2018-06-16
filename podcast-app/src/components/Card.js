@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import defaultImg from '../resources/default.png'
 import { Link } from 'react-router-dom'
+import { getColorCode } from '../utils'
 
 const Wrapper = styled.div`
   width: ${props => props.scale}px;
@@ -30,6 +31,7 @@ const Img = styled.img`
 const ImgWrap = styled.div`
   width: ${props => props.scale}px;
   height: ${props => props.scale}px;
+  background: ${props => props.color};
 `
 
 const Title = styled.h3`
@@ -105,11 +107,11 @@ class Card extends Component {
   }
 
   openPopup(e) {
-    this.setState({ popup: true })
+    if (this.props.popup) this.setState({ popup: true })
   }
 
   closePopup(e) {
-    this.setState({ popup: false })
+    if (this.props.popup) this.setState({ popup: false })
   }
 
   loadDefaultImg(e) {
@@ -141,18 +143,16 @@ class Card extends Component {
             onMouseOut={e => this.closePopup(e)}
             scale={scale}
           >
-            <ImgWrap scale={scale}>
-              <Img
-                alt="Image not available"
-                src={
-                  resource.scaled_logo_url
-                    ? resource.scaled_logo_url
-                    : defaultImg
-                }
-                scale={scale}
-                onError={e => this.loadDefaultImg(e)}
-              />
-            </ImgWrap>
+            {resource.scaled_logo_url
+              ? <ImgWrap scale={scale}>
+                  <Img
+                    alt="Image not available"
+                    src={resource.scaled_logo_url}
+                    scale={scale}
+                    onError={e => this.loadDefaultImg(e)}
+                  />
+                </ImgWrap>
+              : <ImgWrap scale={scale} color={getColorCode()} />}
             <h3>
               {resource.title}
             </h3>
