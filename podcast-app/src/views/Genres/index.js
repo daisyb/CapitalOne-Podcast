@@ -31,7 +31,7 @@ class Genres extends Component {
         genres = sorted.map(tag => {
           return {
             ...tag,
-            link_to: tag.tag
+            link_to: `${this.props.location.pathname}/${tag.tag}`
           }
         })
       }

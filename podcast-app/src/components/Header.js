@@ -35,7 +35,6 @@ const Logo = styled.div`
 
 class Header extends Component {
   render() {
-    const active = 'popular'
     const { gpodurl, username, setUsername, location } = this.props
     return (
       <Container>

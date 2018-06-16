@@ -53,13 +53,21 @@ class App extends Component {
             exact
             path="/Genres"
             component={props =>
-              <Genres gpodurl={gpodurl} logo_scale={logo_scale} />}
+              <Genres
+                gpodurl={gpodurl}
+                logo_scale={logo_scale}
+                location={props.location}
+              />}
           />
           <Route
             exact
-            path="/Genres:genre"
+            path="/Genres/:genre"
             component={props =>
-              <Genre gpodurl={gpodurl} logo_scale={logo_scale} />}
+              <Genre
+                gpodurl={gpodurl}
+                logo_scale={logo_scale}
+                match={props.match}
+              />}
           />
 
           <Route component={Error} />

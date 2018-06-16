@@ -52,6 +52,7 @@ class Search extends Component {
         loading={loading}
         logo_scale={logo_scale}
         loading_gif
+        popups
       />
     )
   }

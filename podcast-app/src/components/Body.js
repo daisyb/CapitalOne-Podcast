@@ -23,7 +23,8 @@ class Body extends Component {
       subheader,
       loading,
       loading_gif,
-      logo_scale
+      logo_scale,
+      popups
     } = this.props
     if (loading && loading_gif) {
       return (
@@ -48,7 +49,12 @@ class Body extends Component {
         </SubHeader>
         <Grid>
           {resources.map((resource, i) =>
-            <Card resource={resource} scale={logo_scale} key={i} />
+            <Card
+              resource={resource}
+              scale={logo_scale}
+              key={i}
+              popup={popups}
+            />
           )}
         </Grid>
       </Container>

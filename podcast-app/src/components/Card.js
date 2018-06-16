@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import defaultImg from '../resources/default.png'
+import { Link } from 'react-router-dom'
 
 const Wrapper = styled.div`
   width: ${props => props.scale}px;
@@ -77,6 +78,24 @@ const PopupText = styled.div`
     margin-top: -5px;
   }
 `
+
+const StyledLink = styled(Link)`
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+`
+const MaybeLink = props => {
+  if (props.to) {
+    return (
+      <StyledLink to={props.to}>
+        {props.children}
+      </StyledLink>
+    )
+  }
+  return props.children
+}
+
 class Card extends Component {
   constructor() {
     super()
@@ -116,26 +135,29 @@ class Card extends Component {
               </PopupText>
             </Popup>
           : ''}
-
-        <CardDiv
-          onMouseOver={e => this.openPopup(e)}
-          onMouseOut={e => this.closePopup(e)}
-          scale={scale}
-        >
-          <ImgWrap scale={scale}>
-            <Img
-              alt="Image not available"
-              src={
-                resource.scaled_logo_url ? resource.scaled_logo_url : defaultImg
-              }
-              scale={scale}
-              onError={e => this.loadDefaultImg(e)}
-            />
-          </ImgWrap>
-          <h3>
-            {resource.title}
-          </h3>
-        </CardDiv>
+        <MaybeLink to={resource.link_to}>
+          <CardDiv
+            onMouseOver={e => this.openPopup(e)}
+            onMouseOut={e => this.closePopup(e)}
+            scale={scale}
+          >
+            <ImgWrap scale={scale}>
+              <Img
+                alt="Image not available"
+                src={
+                  resource.scaled_logo_url
+                    ? resource.scaled_logo_url
+                    : defaultImg
+                }
+                scale={scale}
+                onError={e => this.loadDefaultImg(e)}
+              />
+            </ImgWrap>
+            <h3>
+              {resource.title}
+            </h3>
+          </CardDiv>
+        </MaybeLink>
       </Wrapper>
     )
   }

@@ -21,7 +21,6 @@ const NavLink = styled(Link)`
 `
 class NavMenu extends Component {
   render() {
-    const active = 'popular'
     const { location, tabs } = this.props
     return (
       <NavContainer>

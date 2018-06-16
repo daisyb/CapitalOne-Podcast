@@ -15,9 +15,7 @@ class Popular extends Component {
     fetch(
       `${this.props.gpodurl}toplist/20.json?scale_logo=${this.props.logo_scale}`
     )
-      .then(res => {
-        return res.json()
-      })
+      .then(res => res.json())
       .then(
         result => this.setState({ podcasts: result, loading: false }),
         error => {
@@ -36,6 +34,8 @@ class Popular extends Component {
         subheader={subheader}
         loading={loading}
         logo_scale={logo_scale}
+        loading_gif
+        popups
       />
     )
   }
