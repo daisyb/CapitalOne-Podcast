@@ -19,26 +19,31 @@ class Subscriptions extends Component {
     /* fetch Subscribed Podcasts */
     const { username } = this.props
     if (!username) {
-      this.setState({ error: 'no username' })
+      this.setState({ subheader: 'Please login to continue', loading: false })
     } else {
       fetch(`${this.props.gpodurl}subscriptions/${this.props.username}.json`)
         .then(res => res.json())
         .then(
-          result => this.setState({ podcasts: result, loading: false }),
+          result => {
+            console.log(result)
+            this.setState({
+              podcasts: result,
+              loading: false,
+              subheader: `${this.props.username}'s Subscriptions`
+            })
+          },
           error => {
-            if (error.status === 401) {
-              this.setState({ error: 'not logged in' })
-            } else {
-              this.setState({ error: 'bad request' })
-            }
+            this.setState({
+              subheader: 'Please login to continue',
+              loading: false
+            })
           }
         )
     }
   }
 
   render() {
-    const subheader = 'Subscriptions'
-    const { podcasts, loading, error } = this.state
+    const { podcasts, loading, error, subheader } = this.state
     const { logo_scale } = this.props
     if (error) {
       return <Error error={error} />
