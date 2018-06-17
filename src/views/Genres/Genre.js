@@ -21,7 +21,7 @@ class Genre extends Component {
       let podcasts = await fetch(
         `${this.props.gpodurl}api/2/tag/${encodeURIComponent(
           this.props.match.params.genre
-        )}/20.json`
+        )}/100.json`
       )
         .then(res => res.json())
         .then(
@@ -31,13 +31,17 @@ class Genre extends Component {
           }
         )
       if (podcasts) {
-        podcasts = podcasts.map(podcast => {
-          podcast.scaled_logo_url = scaleLogo(
-            podcast.scaled_logo_url,
-            this.props.logo_scale
-          )
-          return podcast
-        })
+        podcasts = podcasts
+          .map(podcast => {
+            podcast.scaled_logo_url = scaleLogo(
+              podcast.scaled_logo_url,
+              this.props.logo_scale
+            )
+            return podcast
+          })
+          .sort((a, b) => {
+            return b.subscribers - a.subscribers
+          })
       }
       this.setState({ podcasts, loading: false })
     }
