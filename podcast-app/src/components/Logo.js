@@ -9,8 +9,12 @@ const LogoContainer = styled.div`
   background: #0099ff;
   color: white;
 `
+
+/**
+ * App logo
+ */
 const Logo = props => {
-  return <LogoContainer>Clever Name</LogoContainer>
+  return <LogoContainer>CapPod</LogoContainer>
 }
 
 export default Logo

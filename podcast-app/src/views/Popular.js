@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Body from '../components/Body'
 
+/**
+ * View containing list of popular podcasts
+ */
 class Popular extends Component {
   constructor() {
     super()
@@ -39,6 +43,17 @@ class Popular extends Component {
       />
     )
   }
+}
+
+Popular.propTypes = {
+  /**
+   * base url for gpodder.net api
+   */
+  gpodurl: PropTypes.string,
+  /**
+   * Scale for logo images, controls size of Card components
+   */
+  logo_scale: PropTypes.number
 }
 
 export default Popular

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -19,6 +20,9 @@ const NavLink = styled(Link)`
   text-decoration: none;
   color: inherit;
 `
+/**
+ * Menu with tabs that link to different pages on the app
+ */
 class NavMenu extends Component {
   render() {
     const { location, tabs } = this.props
@@ -40,4 +44,16 @@ class NavMenu extends Component {
   }
 }
 
+NavMenu.propTypes = {
+  /**
+   * react-router location prop
+   */
+  location: PropTypes.object,
+  /**
+   * Information about navigation tabs to be rendered
+   * should be of the form:
+   * {TAB_NAME: 'ROUTE_TO_LINK_TO'}
+   */
+  tabs: PropTypes.object
+}
 export default NavMenu

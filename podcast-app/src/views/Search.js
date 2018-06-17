@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import Body from '../components/Body'
 import { getUrlParam } from '../utils'
 
+/**
+ * View containing search results
+ */
 class Search extends Component {
   constructor() {
     super()
@@ -58,4 +62,18 @@ class Search extends Component {
   }
 }
 
+Search.propTypes = {
+  /**
+   * base url for gpodder.net api
+   */
+  gpodurl: PropTypes.string,
+  /**
+   * Scale for logo images, controls size of Card components
+   */
+  logo_scale: PropTypes.number,
+  /**
+   * react-router location prop
+   */
+  location: PropTypes.object
+}
 export default Search

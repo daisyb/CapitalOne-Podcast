@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import SearchBar from './SearchBar'
 import Login from './Login'
@@ -32,7 +33,9 @@ const Logo = styled.div`
   font-size: 25px;
   width: 200px;
 `
-
+/**
+ * Navigation Header to be rendered at the top of every page
+ */
 class Header extends Component {
   render() {
     const { gpodurl, username, setUsername, location } = this.props
@@ -62,6 +65,25 @@ class Header extends Component {
       </Container>
     )
   }
+}
+
+Header.propTypes = {
+  /**
+   * base url for gpodder.net api
+   */
+  gpodurl: PropTypes.string,
+  /**
+   * username for account logged in at gpodder.net, null if not logged in
+   */
+  username: PropTypes.string,
+  /**
+   * function to set username in App.js state
+   */
+  setUsername: PropTypes.func,
+  /**
+   * react-router location prop
+   */
+  location: PropTypes.object
 }
 
 export default Header

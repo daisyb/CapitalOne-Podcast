@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Button = styled.button`
@@ -13,7 +14,9 @@ const Button = styled.button`
   padding: 4px 8px 4px 8px;
   cursor: pointer;
 `
-
+/**
+ * Login/Logout prompts
+ */
 class Login extends Component {
   handleLogin(e) {
     const username = this.user.value
@@ -67,4 +70,18 @@ class Login extends Component {
   }
 }
 
+Login.propTypes = {
+  /**
+   * base url for gpodder.net api
+   */
+  gpodurl: PropTypes.string,
+  /**
+   * username for account logged in at gpodder.net, null if not logged in
+   */
+  username: PropTypes.string,
+  /**
+   * function to set username in App.js state
+   */
+  setUsername: PropTypes.func
+}
 export default Login

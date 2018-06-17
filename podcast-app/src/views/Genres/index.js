@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Body from '../../components/Body'
 
+/**
+ * View containing list of Genres
+ */
 class Genres extends Component {
   constructor() {
     super()
@@ -55,4 +59,18 @@ class Genres extends Component {
   }
 }
 
+Genres.propTypes = {
+  /**
+   * base url for gpodder.net api
+   */
+  gpodurl: PropTypes.string,
+  /**
+   * Scale for logo images, controls size of Card components
+   */
+  logo_scale: PropTypes.number,
+  /**
+   * react-router location prop
+   */
+  location: PropTypes.object
+}
 export default Genres

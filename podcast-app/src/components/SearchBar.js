@@ -25,6 +25,9 @@ const Container = styled.div`
 
 const SearchButton = styled.button`border: none;`
 
+/**
+ * Search bar for podcasts
+ */
 class SearchBar extends Component {
   constructor() {
     super()
@@ -41,6 +44,7 @@ class SearchBar extends Component {
   }
 
   executeSearch(e) {
+    e.preventDefault()
     const query = this.searchtext.value
     this.setState({ redirectToSearch: true, query })
   }
@@ -61,7 +65,6 @@ class SearchBar extends Component {
             pathname: '/Search',
             search: `?q=${query}`
           }}
-          push={true}
         />
       )
     }

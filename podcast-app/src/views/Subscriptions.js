@@ -1,8 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Body from '../components/Body'
 import Error from '../views/Error'
 
-class Popular extends Component {
+/**
+ * View containg subscribed podcasts
+ */
+class Subscriptions extends Component {
   constructor() {
     super()
     this.state = {
@@ -12,7 +16,7 @@ class Popular extends Component {
   }
 
   componentDidMount() {
-    /* fetch Top Podcasts */
+    /* fetch Subscribed Podcasts */
     const { username } = this.props
     if (!username) {
       this.setState({ error: 'no username' })
@@ -52,4 +56,18 @@ class Popular extends Component {
   }
 }
 
-export default Popular
+Subscriptions.propTypes = {
+  /**
+   * base url for gpodder.net api
+   */
+  gpodurl: PropTypes.string,
+  /**
+   * username for account logged in at gpodder.net, null if not logged in
+   */
+  username: PropTypes.string,
+  /**
+   * Scale for logo images, controls size of Card components
+   */
+  logo_scale: PropTypes.number
+}
+export default Subscriptions

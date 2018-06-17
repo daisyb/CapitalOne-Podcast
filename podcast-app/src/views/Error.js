@@ -1,6 +1,10 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Body from '../components/Body'
 
+/**
+ * View containing error message
+ */
 const Error = props => {
   console.log(props.error)
   return (
@@ -10,5 +14,10 @@ const Error = props => {
     </Body>
   )
 }
-
+Error.propTypes = {
+  /**
+   * Information about the error
+   */
+  error: PropTypes.string
+}
 export default Error

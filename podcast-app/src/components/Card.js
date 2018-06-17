@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import defaultImg from '../resources/default.png'
-import { Link } from 'react-router-dom'
 import { getColorCode } from '../utils'
+import MaybeLink from './MaybeLink'
 
 const Wrapper = styled.div`
   width: ${props => props.scale}px;
@@ -81,23 +82,9 @@ const PopupText = styled.div`
   }
 `
 
-const StyledLink = styled(Link)`
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  color: inherit;
-`
-const MaybeLink = props => {
-  if (props.to) {
-    return (
-      <StyledLink to={props.to}>
-        {props.children}
-      </StyledLink>
-    )
-  }
-  return props.children
-}
-
+/**
+ * Retangular cards to display information about podcasts
+ */
 class Card extends Component {
   constructor() {
     super()
@@ -163,4 +150,28 @@ class Card extends Component {
   }
 }
 
+Card.propTypes = {
+  /**
+   * Array containing resources objects to popuplate <Card/>'s with
+   * Objects should contain the following fields
+   * {
+   *    title: string, //required
+   *    description: string, //optional
+   *    subscribers: number, //optional
+   *    scaled_logo_url: string, //optional, url for logo image
+   *    link_to: string //optional, //if present card will link out
+   * }
+   * Almost all of these field are returned in 
+   * gpodder.net's api calls for podcasts
+   */
+  resources: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Scale for logo images, controls overall size of Card
+   */
+  scale: PropTypes.number,
+  /**
+   * If true, display further information about resource on hover
+   */
+  popups: PropTypes.bool
+}
 export default Card

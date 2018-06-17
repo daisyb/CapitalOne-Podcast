@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import Card from './Card'
 import Loading from '../resources/loading.gif'
@@ -16,6 +17,9 @@ const Grid = styled.div`
 `
 const SubHeader = styled.h1`width: 70%;`
 
+/**
+ * Container for cards and error messages
+ */
 class Body extends Component {
   render() {
     const {
@@ -62,4 +66,40 @@ class Body extends Component {
   }
 }
 
+Body.propTypes = {
+  /**
+   * Array containing resources objects to popuplate <Card/>s with
+   * Objects should contain the following fields
+   * {
+   *    title: string, //required
+   *    description: string, //optional
+   *    subscribers: number, //optional
+   *    scaled_logo_url: string, //optional, url for logo image
+   *    link_to: string //optional, //if present card will link out
+   * }
+   * Almost all of these field are returned in 
+   * gpodder.net's api calls for podcasts
+   */
+  resources: PropTypes.arrayOf(PropTypes.object),
+  /**
+   * Header describing contents of Body
+   */
+  subheader: PropTypes.string,
+  /**
+   * Scale for logo images, controls size of <Card/>s
+   */
+  logo_scale: PropTypes.number,
+  /**
+   * State information about whether data is being loaded from the api or not
+   */
+  loading: PropTypes.bool,
+  /**
+   * If true, generate loading gif while waiting for data
+   */
+  loading_gif: PropTypes.bool,
+  /**
+   * If true, display further information about resources on hover
+   */
+  popups: PropTypes.bool
+}
 export default Body
