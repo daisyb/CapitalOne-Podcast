@@ -27,16 +27,14 @@ class Login extends Component {
       headers: new Headers({
         Authorization: 'Basic ' + btoa(username + ':' + password)
       }),
-      mode: 'no-cors',
       credentials: 'include'
-    }).then(res => {
-      if (res.ok && res.status === 200) setUsername(username)
-      else if (res.status === 401) alert('incorrect username or password')
-      else {
-        console.log(res)
-        setUsername(username)
-      }
-    })
+    }).then(
+      res => {
+        if (res.ok && res.status === 200) setUsername(username)
+        else alert('Incorrect username or password')
+      },
+      error => console.log(error)
+    )
   }
 
   handleLogout(e) {
