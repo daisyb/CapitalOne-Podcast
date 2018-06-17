@@ -23,15 +23,20 @@ class Login extends Component {
     const password = this.password.value
     const { gpodurl, setUsername } = this.props
     fetch(`${gpodurl}api/2/auth/${username}/login.json`, {
+      method: 'post',
       headers: new Headers({
         Authorization: 'Basic ' + btoa(username + ':' + password)
-      })
+      }),
+      mode: 'no-cors',
+      credentials: 'include'
     }).then(
       res => {
-        if (res.ok && res.status === 200) setUsername(username)
-        else alert('Incorrect username or password')
+        setUsername(username)
       },
-      error => console.log(error)
+      error => {
+        alert('Incorrect username or password')
+        console.log(error)
+      }
     )
   }
 
@@ -39,8 +44,16 @@ class Login extends Component {
     const { gpodurl, setUsername, username } = this.props
     fetch(`${gpodurl}api/2/auth/${username}/logout.json`, {
       method: 'POST',
+      mode: 'no-cors',
       credentials: 'include'
     }).then(res => setUsername(null), error => console.log(error))
+  }
+
+  checkEnter(e) {
+    let code = e.keyCode ? e.keyCode : e.which
+    if (code === 13) {
+      this.handleLogin(e)
+    }
   }
 
   render() {
@@ -58,6 +71,7 @@ class Login extends Component {
             ref={input => (this.password = input)}
             type="password"
             placeholder="password"
+            onKeyPress={e => this.checkEnter(e)}
           />
 
           <Button onClick={e => this.handleLogin(e)}>Login</Button>

@@ -13,7 +13,7 @@ class App extends Component {
     super()
     this.state = {
       gpodurl: 'https://gpodder.net/',
-      username: null,
+      username: '',
       logo_scale: 150
     }
     this.setUsername = this.setUsername.bind(this)
