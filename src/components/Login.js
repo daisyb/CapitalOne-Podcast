@@ -23,11 +23,9 @@ class Login extends Component {
     const password = this.password.value
     const { gpodurl, setUsername } = this.props
     fetch(`${gpodurl}api/2/auth/${username}/login.json`, {
-      method: 'POST',
       headers: new Headers({
         Authorization: 'Basic ' + btoa(username + ':' + password)
-      }),
-      credentials: 'include'
+      })
     }).then(
       res => {
         if (res.ok && res.status === 200) setUsername(username)
