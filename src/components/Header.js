@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import SearchBar from './SearchBar'
 import Login from './Login'
 import NavMenu from './NavMenu'
+import MaybeLink from './MaybeLink'
 
 const Container = styled.div`
   padding: 20px 10px 0px 10px;
@@ -43,7 +44,9 @@ class Header extends Component {
       <Container>
         <TopContainer>
           <Left>
-            <Logo>Clever Name</Logo>
+            <MaybeLink to="/">
+              <Logo>PodSearch</Logo>
+            </MaybeLink>
             <SearchBar />
           </Left>
           <Right>
