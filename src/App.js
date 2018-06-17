@@ -12,7 +12,7 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      gpodurl: 'http://gpodder.net/',
+      gpodurl: 'https://gpodder.net/',
       username: null,
       logo_scale: 150
     }
