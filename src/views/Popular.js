@@ -17,7 +17,8 @@ class Popular extends Component {
   componentDidMount() {
     /* fetch Top Podcasts */
     fetch(
-      `${this.props.gpodurl}toplist/20.json?scale_logo=${this.props.logo_scale}`
+      `${this.props.gpodurl}toplist/100.json?scale_logo=${this.props
+        .logo_scale}`
     )
       .then(res => res.json())
       .then(
